@@ -1,9 +1,12 @@
 package com.sherif.data.renderer;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.sherif.data.provider.IDataProvider;
 
 public class DataRenderer implements IDataRenderer {
 
+	@Autowired
 	private IDataProvider dataProvider;
 
 	@Override
