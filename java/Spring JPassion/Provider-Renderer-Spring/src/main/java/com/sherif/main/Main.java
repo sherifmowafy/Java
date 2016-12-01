@@ -3,8 +3,6 @@ package com.sherif.main;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.sherif.data.provider.DataProvider;
-import com.sherif.data.provider.IDataProvider;
 import com.sherif.data.renderer.DataRenderer;
 import com.sherif.data.renderer.IDataRenderer;
 
@@ -14,11 +12,12 @@ public class Main {
 
 		BeanFactory factory = new ClassPathXmlApplicationContext("/spring-config.xml");
 
-		IDataProvider dataProvider = (DataProvider) factory.getBean("provider");
+		// IDataProvider dataProvider = (DataProvider)
+		// factory.getBean("provider");
 
 		IDataRenderer dataRenderer = (DataRenderer) factory.getBean("renderer");
 
-		dataRenderer.setDataProvider(dataProvider);
+		// dataRenderer.setDataProvider(dataProvider);
 
 		dataRenderer.render();
 	}

@@ -3,8 +3,15 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-<bean id="provider" class="com.sherif.data.provider.DataProvider"></bean>
+<bean id="provider" class="com.sherif.data.provider.DataProvider">
+	<constructor-arg>
+		<value>Constructor arg</value>
+	</constructor-arg>
+</bean>
 
-<bean id="renderer" class="com.sherif.data.renderer.DataRenderer"></bean>
-
+<bean id="renderer" class="com.sherif.data.renderer.DataRenderer">
+	<property name="dataProvider" ref="provider"></property>
+	
+</bean>
+	
 </beans>
