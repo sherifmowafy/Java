@@ -1,7 +1,10 @@
 package com.sherif.app;
 
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import org.hibernate.HibernateException;
@@ -13,6 +16,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import com.sherif.data.domain.Customer;
+import com.sherif.data.domain.Order;
 
 public class Application {
 
@@ -29,13 +33,27 @@ public class Application {
 	public static void createJPAEntityManager() {
 		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("unit_name");
 		EntityManager em = emFactory.createEntityManager();
-		em.getTransaction().begin();
-		// Customer c1 = new Customer();
-		// c1.setName("JPA Entity Manager");
-		// em.persist(c1);
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		 Customer c1 = new Customer();
+		 c1.setName("Sherif Mowafy");
+		 c1.setRegDate(new Date());
+		 em.persist(c1);
+		 transaction.commit();
+//		Customer c = em.find(Customer.class, 1l);
+//		em.remove(c);
+		//em.getTransaction().commit();
 		Customer c = em.find(Customer.class, 1l);
-		em.remove(c);
-		em.getTransaction().commit();
+		System.out.println(c.getName());
+		
+		Order order = new Order();
+		order.setCustomer(c);
+		order.setOrderDate(new Date());
+		
+		transaction.begin();
+		em.persist(order);
+		transaction.commit();
+		
 		em.close();
 	}
 
