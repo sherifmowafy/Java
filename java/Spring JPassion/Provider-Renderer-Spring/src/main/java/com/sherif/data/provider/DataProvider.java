@@ -1,16 +1,13 @@
 package com.sherif.data.provider;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class DataProvider implements IDataProvider {
-
-	private String message;
-
-	public DataProvider(String message) {
-		this.message = message;
-	}
 
 	@Override
 	public String getData() {
-		return "Hello World Data Provider (" + message + ")";
+		return "Hello World Data Provider ";
 	}
 
 }

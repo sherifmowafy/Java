@@ -1,9 +1,11 @@
 package com.sherif.data.renderer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.sherif.data.provider.IDataProvider;
 
+@Component("renderer")
 public class DataRenderer implements IDataRenderer {
 
 	@Autowired

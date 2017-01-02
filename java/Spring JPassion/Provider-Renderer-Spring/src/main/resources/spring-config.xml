@@ -5,17 +5,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-<context:annotation-config/> <!-- Enables using annotations "@Autowired" to make bean wiring instead of XML -->
-
-<bean id="provider" class="com.sherif.data.provider.DataProvider">
-	<constructor-arg>
-		<value>Constructor arg test</value>
-	</constructor-arg>
-</bean>
-
-<bean id="renderer" class="com.sherif.data.renderer.DataRenderer">
-<!-- 	<property name="dataProvider" ref="provider"></property>  -->
-<!-- Note that there is no dataProvider property in the renderer. It is because the wiring requirement is specified through @Autowired annotation -->
-</bean>
+<context:component-scan base-package="com.sherif.data" />
+<!-- When using component scan you don't have to add annotation-config  
+spring assumes that you already did the bean wiring using annotations "logical assumption"-->
 	
 </beans>
