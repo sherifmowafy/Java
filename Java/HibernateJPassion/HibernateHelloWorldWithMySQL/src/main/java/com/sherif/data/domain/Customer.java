@@ -1,11 +1,14 @@
 package com.sherif.data.domain;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,7 +21,18 @@ public class Customer {
 	private long id;
 	private String name;
 	private Date regDate;
+	
+	@OneToMany(mappedBy="customer", cascade=CascadeType.PERSIST)
+	private List<Order> orders ;
 
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
 
 	public long getId() {
 		return id;

@@ -1,6 +1,8 @@
 package com.sherif.app;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,17 +19,53 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import com.sherif.data.domain.Customer;
 import com.sherif.data.domain.Order;
+import com.sherif.data.domain.OrderDetails;
+import com.sherif.data.domain.OrderDetailsId;
+import com.sherif.data.domain.Product;
 
 public class Application {
 
-	public Application() {
-		// TODO Auto-generated constructor stub
 
-	}
 
 	public static void main(String[] args) {
-		createJPAEntityManager();
-
+		//AddOneToManyEntities();
+		//ManyToOneCascadeRemove();
+		ManyToManyWithExtraColumns();
+	}
+	
+	public static void ManyToManyWithExtraColumns(){
+		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("unit_name");
+		EntityManager em = emFactory.createEntityManager();
+		EntityTransaction transaction = em.getTransaction();
+		
+		Product product = em.find(Product.class, 1l);
+		Order order = em.find(Order.class, 5l);
+		
+		OrderDetailsId odId = new OrderDetailsId();
+		odId.setOrderId(order.getId());
+		odId.setProductId(product.getId());
+		
+		OrderDetails orderDetails = em.find(OrderDetails.class, odId);
+		
+		
+		
+		System.out.println(product.getOrderDetails().size());
+		System.out.println(order.getOrderDetails().size());
+		
+		System.out.println(orderDetails.getProduct().getName());
+		
+//		OrderDetails od = new OrderDetails();
+//		
+//		od.setOrderId(order.getId());
+//		od.setProductId(product.getId());
+//		od.setQuantity(10);
+//		
+//		transaction.begin();
+//		
+//		em.persist(od);
+//		
+//		transaction.commit();
+		
 	}
 
 	public static void createJPAEntityManager() {
@@ -35,27 +73,73 @@ public class Application {
 		EntityManager em = emFactory.createEntityManager();
 		EntityTransaction transaction = em.getTransaction();
 		transaction.begin();
-		 Customer c1 = new Customer();
-		 c1.setName("Sherif Mowafy");
-		 c1.setRegDate(new Date());
-		 em.persist(c1);
+		 
+		Customer customer = new Customer();
+		customer.setName("One To Many");
+		customer.setRegDate(new Date());
+		 
+		
+		
+		 Order order = new Order();
+		 order.setOrderDate(new Date());
+		 order.setCustomer(customer);
+		 
+		 
+		 
+		 em.persist(order);
+		 
 		 transaction.commit();
 //		Customer c = em.find(Customer.class, 1l);
 //		em.remove(c);
 		//em.getTransaction().commit();
-		Customer c = em.find(Customer.class, 1l);
-		System.out.println(c.getName());
-		
-		Order order = new Order();
-		order.setCustomer(c);
-		order.setOrderDate(new Date());
-		
-		transaction.begin();
-		em.persist(order);
-		transaction.commit();
+//		Customer c = em.find(Customer.class, 1l);
+//		System.out.println(c.getName());
+//		
+//		Order order = new Order();
+//		order.setCustomer(c);
+//		order.setOrderDate(new Date());
+//		
+//		transaction.begin();
+//		em.persist(order);
+//		transaction.commit();
 		
 		em.close();
 	}
+	
+	public static void ManyToOneCascadeRemove(){
+		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("unit_name");
+		EntityManager em = emFactory.createEntityManager();
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		Order order = em.find(Order.class, 4l);
+		em.remove(order);
+		transaction.commit();
+	}
+	
+	public static void AddOneToManyEntities(){
+		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("unit_name");
+		EntityManager em = emFactory.createEntityManager();
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		 
+		Customer customer = new Customer();
+		customer.setName("One To Many");
+		customer.setRegDate(new Date());
+		 
+		 List<Order> orders = new ArrayList<Order>();
+		
+		 Order order = new Order();
+		 order.setOrderDate(new Date());
+		 order.setCustomer(customer);
+		 orders.add(order);
+		 
+		 customer.setOrders(orders);
+		 
+		 em.persist(customer);
+		 
+		 transaction.commit();
+	}
+	
 
 	public static void createHibernateSession() {
 		SessionFactory sessionFactory = null;
