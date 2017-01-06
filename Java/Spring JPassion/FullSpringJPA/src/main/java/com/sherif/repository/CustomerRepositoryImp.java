@@ -25,6 +25,11 @@ public class CustomerRepositoryImp implements CustomerRepository {
 		return customer;
 	}
 
+	@Override
+	public void delete(Customer customer) {
+		em.remove(customer);
+	}
+
 	
 
 	
