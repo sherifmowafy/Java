@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link href="resources/css/bootstrap.css" rel="stylesheet" />
+
+<script src="resources/js/jquery-3.1.0.min.js"></script>
+<script src="resources/js/angular.js"></script>
+<script src="resources/js/angular-ui-router.js"></script>
+<script src="resources/js/bootstrap.js"></script>
+
+<script src="app/services/erp/erp.services.module.js"></script>
+<script src="app/services/erp/customerService.js"></script>
+
+<script src="app/app.js"></script>
+
+<script src="app/views/customer/CustomerListController.js"></script>
+<script src="app/views/customer/CustomerEditController.js"></script>
+<script src="app/views/customer/CustomerAddController.js"></script>
+
+
+</head>
+<body ng-app="app" ng-controller="appController">
+	<nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" ui-sref="home">My New Site ISA</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li ui-sref-active="active"><a ui-sref="home" >Home</a></li>
+                    <li ui-sref-active="active"><a ui-sref="customersList"> Customers </a></li>
+                    <li ui-sref-active="active"><a ui-sref="customerEdit({customerId:0})"  ><i class="glyphicon glyphicon-plus"></i>Add Customer</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div ui-view ></div>
+</body>
+</html>

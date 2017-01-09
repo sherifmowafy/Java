@@ -1,4 +1,4 @@
-package com.sherif.domain;
+package com.sherif.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;

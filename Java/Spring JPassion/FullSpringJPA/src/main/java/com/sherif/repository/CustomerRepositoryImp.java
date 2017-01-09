@@ -5,7 +5,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-import com.sherif.domain.Customer;
+import com.sherif.entity.Customer;
 
 @Repository
 public class CustomerRepositoryImp implements CustomerRepository {

@@ -1,6 +1,6 @@
 package com.sherif.repository;
 
-import com.sherif.domain.Customer;
+import com.sherif.entity.Customer;
 
 public interface CustomerRepository {
 	

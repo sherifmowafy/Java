@@ -1,4 +1,4 @@
-package com.sherif.domain;
+package com.sherif.entity;
 
 import java.io.Serializable;
 
