@@ -5,10 +5,10 @@
    var app = angular.module('app', [
 
         //Angular modules
-        'ui.router'
+        'ui.router',
 
         //Custom modules
-	   ,'erp.services.module'
+	   'erp.services.module'
         //3rd-party modules
 
    ]);

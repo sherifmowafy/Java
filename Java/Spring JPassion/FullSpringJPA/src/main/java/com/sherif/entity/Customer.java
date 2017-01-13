@@ -8,14 +8,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+@NamedQueries({
+	@NamedQuery(name= Customer.SELECT_ALL_QUERY, query="SELECT e FROM Customer e"),
+	@NamedQuery(name= Customer.COUNT_ALL_QUERY, query="SELECT COUNT(e.id) FROM Customer e")
+})
 
 @Entity
 @Table(name="Customers")
 public class Customer {
-
-
+	
+	public static final String SELECT_ALL_QUERY = "SELECT_ALL_QUERY";
+	public static final String COUNT_ALL_QUERY = "COUNT_ALL_QUERY";
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -24,7 +33,6 @@ public class Customer {
 	
 	@OneToMany(mappedBy="customer", cascade=CascadeType.PERSIST)
 	private List<Order> orders ;
-
 
 	public List<Order> getOrders() {
 		return orders;
