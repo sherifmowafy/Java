@@ -24,6 +24,10 @@
            url: '/customers',
            templateUrl: 'app/views/customer/customerList.html',
            controller: 'CustomerListController as vm'
+       }).state('customerDetails', {
+           url: '/customers/:customerId',
+           templateUrl: 'app/views/customer/customerDetails.html',
+           controller: 'CustomerDetailsController as vm'
        }).state("customerAdd", {
            url: '/customer/add',
            templateUrl: 'app/views/customer/customerAdd.html',
