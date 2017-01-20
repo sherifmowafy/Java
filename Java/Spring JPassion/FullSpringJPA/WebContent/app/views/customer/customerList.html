@@ -1,1 +1,22 @@
-<h1>Customer List {{vm.msg}}</h1>
+<table class="table" border="1">
+	<tr>
+		<th>Id</th>
+		<th>Name</th>
+		<th>Registration date</th>
+		<th>Details</th>
+		<th>Edit</th>
+		<th>Remove</th>
+	</tr>
+	<tr ng-repeat="customer in vm.customers">
+		<td>{{customer.id}}</td>
+		<td>{{customer.name}}</td>
+		<td>{{customer.regDate}}</td>
+		<td><a class="btn btn-info" ui-sref="customerDetails({customerId:customer.id})">More
+				info...</a></td>
+		<td><a class="btn btn-success" ui-sref="customerEdit({customerId:customer.id})">Edit</a></td>
+		<td><input type="button" class="btn btn-danger "
+			ng-click="vm.removeCustomer(customer)" value="Remove" /></td>
+
+	</tr>
+</table>
+

@@ -36,7 +36,7 @@ public class CustomerRepositoryImp implements CustomerRepository {
 	@Override
 	public List<Customer> getAll(int pageNumber) {
 		TypedQuery<Customer> query = em.createNamedQuery(Customer.SELECT_ALL_QUERY, Customer.class);
-		int pageSize = 2;
+		int pageSize = 5;
 		query.setFirstResult((pageNumber -1) * pageSize);
 		query.setMaxResults(pageSize);
 		return query.getResultList();

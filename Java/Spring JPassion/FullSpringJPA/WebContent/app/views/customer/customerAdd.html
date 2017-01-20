@@ -1,1 +1,16 @@
-<h1>Add Customer {{vm.msg}}</h1>
+<h2>{{vm.label}}</h2>
+<table>
+	<tr>
+		<td>Name :</td>
+		<td><input type="text" ng-model="vm.customer.name" /> </td>
+	</tr>
+	<tr>
+		<td>Date :</td>
+		<td><input type="text" ng-model="vm.customer.regDate" /> </td>
+	</tr>
+	
+	<tr>
+		<td></td>
+		<td><input type="button" ng-click="vm.save()" value="Save" /></td>
+	</tr>
+</table>

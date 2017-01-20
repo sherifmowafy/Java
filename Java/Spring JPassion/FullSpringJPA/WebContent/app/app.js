@@ -21,7 +21,7 @@
            url: '/',
            templateUrl: 'app/views/home/home.html',
        }).state('customersList', {
-           url: '/customers',
+           url: '/customers?page',
            templateUrl: 'app/views/customer/customerList.html',
            controller: 'CustomerListController as vm'
        }).state('customerDetails', {
@@ -34,8 +34,8 @@
            controller: 'CustomerAddController as vm'
        }).state("customerEdit", {
            url: '/customer/:customerId/edit',
-           templateUrl: 'app/views/customer/customerEdit.html',
-           controller: 'CustomerEditController as vm'
+           templateUrl: 'app/views/customer/customerAdd.html',
+           controller: 'CustomerAddController as vm'
        });
 
    }]);
