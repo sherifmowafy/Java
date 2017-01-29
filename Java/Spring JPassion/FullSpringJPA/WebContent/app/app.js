@@ -12,6 +12,10 @@
         //3rd-party modules
 
    ]);
+   
+   app.constant('appConfig', {
+	   'baseUrl' : 'http://localhost:8080/FullSpringJPA'
+   });
 
    app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 

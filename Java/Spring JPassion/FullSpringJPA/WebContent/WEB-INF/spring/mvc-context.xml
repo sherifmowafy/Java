@@ -9,7 +9,11 @@
 	<mvc:annotation-driven />
 	<context:component-scan base-package="com.sherif.controller" />
 	<context:component-scan base-package="com.sherif.converter" />
-
+	
+	<mvc:resources location="/resources/" mapping="/resources/**" />
+	<mvc:resources location="/app/" mapping="/app/**" />
+	<mvc:resources location="/" mapping="/index.html" />
+	
 	<bean
 		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 		<property name="contentNegotiationManager" ref="contentNegotiationManager" />
@@ -38,6 +42,7 @@
 	<bean id="contentNegotiationManager"
 		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
 		<property name="ignoreAcceptHeader" value="true"/>
+		<property name="defaultContentType" value="text/html"></property>
 		<property name="mediaTypes">
 			<map>
 				<entry key="json" value="application/json" />
