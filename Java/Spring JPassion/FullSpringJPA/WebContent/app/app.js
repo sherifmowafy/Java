@@ -1,4 +1,15 @@
 ﻿
+(function(){
+	'use strict';
+	$(function(){
+		$('#logout').click(function(e){
+			e.preventDefault();
+			$('#logoutForm').submit();
+		});
+	});
+}());
+
+
 (function () {
     'use strict'
 

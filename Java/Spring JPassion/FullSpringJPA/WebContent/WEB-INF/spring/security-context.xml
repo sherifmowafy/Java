@@ -5,18 +5,27 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+
+	<bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
 	<security:http auto-config="true" use-expressions="false">
-		<security:http-basic />
+		<security:csrf disabled="false"/>
+		<!--  <security:http-basic /> -->
+		<security:form-login login-page="/login.html" login-processing-url="/login.html" 
+		username-parameter="email" password-parameter="password"
+		default-target-url="/index.html" always-use-default-target="true"
+		authentication-failure-url="/login.html?error=true"
+		/>
+		<security:logout logout-url="/logout.html" logout-success-url="/login.html?logout=true"/>
 		<security:intercept-url pattern="/customers**" access="ROLE_USER"  />
-		<security:intercept-url pattern="/**" access="ROLE_ANONYMOUS"  />
-		<security:csrf disabled="true"/>
+		<security:intercept-url pattern="/**" access="ROLE_ANONYMOUS,ROLE_USER"  />
+	
 	</security:http>
 	
 	<security:authentication-manager>
 		<security:authentication-provider>
 			<security:user-service>
-				<security:user name="sherif" password="123" authorities="ROLE_USER"/>
-				<security:user name="admin" password="123" authorities="ROLE_USER,ROLE_ADMIN"/>
+				<security:user name="sherifmwafy@gmail.com" password="123" authorities="ROLE_USER"/>
+				<security:user name="admin@gmail.com" password="123" authorities="ROLE_USER,ROLE_ADMIN"/>
 			</security:user-service>
 		</security:authentication-provider>
 	</security:authentication-manager>
