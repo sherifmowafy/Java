@@ -5,11 +5,11 @@
 	function customerService($resource, appConfig){
 		var baseUrl = appConfig.baseUrl;
 		this.getById = function(id){
-			return $resource(baseUrl + '/customers/:id.json').get({ id : id } ).$promise;
+			return $resource(baseUrl + '/customers/:id.json', null, { get : { method:"GET", headers : { Authentication: "TOOKEN"} } }).get({ id : id } ).$promise;
 		};
 		
 		this.getAll = function(page){
-			return $resource(baseUrl + '/customers.json?page=:page').get({ page : page } ).$promise;
+			return $resource(baseUrl + '/customers.json?page=:page', null, { get : { method:"GET", headers : { Authentication: "TOOKEN"} } } ).get({ page : page } ).$promise;
 		};
 		
 		this.save = function(customer){

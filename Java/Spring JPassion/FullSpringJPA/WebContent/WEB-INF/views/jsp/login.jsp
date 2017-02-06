@@ -35,7 +35,7 @@
 					</c:if>
 				</div>
 				 -->
-				<c:url value="/login.html" var="loginVar" />
+				<c:url value="/login" var="loginVar" />
 				<form method="POST" action="${loginVar}">
 					<div class="form-group">
 						<label for="email">Email address</label> <input type="email"

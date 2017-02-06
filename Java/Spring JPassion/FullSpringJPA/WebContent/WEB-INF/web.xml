@@ -17,7 +17,7 @@
 
 	<!-- Spring Security Filer -->
 	<filter>
-		<!-- Filter name can't be changed  -->
+		
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 	</filter>
@@ -40,13 +40,10 @@
 
 	<servlet-mapping>
 		<servlet-name>springDispatcherServlet</servlet-name>
-		<url-pattern>*.html</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	
-	<servlet-mapping>
-		<servlet-name>springDispatcherServlet</servlet-name>
-		<url-pattern>*.json</url-pattern>
-	</servlet-mapping>
+	
 
 
 </web-app>

@@ -30,7 +30,7 @@
 								Welcome <security:authentication property="name"/>
 								<a id="logout" href='#' >Logout</a>
 							</p>
-							<form id="logoutForm" action='<c:url value="/logout.html" />' method="POST">
+							<form id="logoutForm" action='<c:url value="/logout" />' method="POST">
 								<security:csrfInput/>
 							</form>
 						</li>

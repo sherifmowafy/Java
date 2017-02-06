@@ -7,26 +7,41 @@
 
 
 	<bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
-	<security:http auto-config="true" use-expressions="false">
-		<security:csrf disabled="false"/>
-		<!--  <security:http-basic /> -->
-		<security:form-login login-page="/login.html" login-processing-url="/login.html" 
-		username-parameter="email" password-parameter="password"
-		default-target-url="/index.html" always-use-default-target="true"
-		authentication-failure-url="/login.html?error=true"
-		/>
-		<security:logout logout-url="/logout.html" logout-success-url="/login.html?logout=true"/>
-		<security:intercept-url pattern="/customers**" access="ROLE_USER"  />
-		<security:intercept-url pattern="/**" access="ROLE_ANONYMOUS,ROLE_USER"  />
 	
+	<security:http pattern="/resources/**" security="none" />
+	<security:http pattern="/app/**" security="none" />
+	<!-- <security:http auto-config="false" use-expressions="false" entry-point-ref="customAuthenticationEntryPoint" > -->
+	<security:http auto-config="true" use-expressions="false"  >
+		<!--  <security:http-basic /> -->
+		<security:csrf disabled="false"/>
+		<!-- <security:custom-filter ref="customAuthenticationFilter" position="FORM_LOGIN_FILTER"  />  -->
+		
+		<!-- -->	
+		<security:form-login login-page="/login" login-processing-url="/login" 
+		username-parameter="email" password-parameter="password"
+		default-target-url="/index" always-use-default-target="true"
+		authentication-failure-url="/login?error=true"
+		/>
+		<!-- -->
+		
+		<security:logout logout-url="/logout" logout-success-url="/login?logout=true"/>  
+		<security:intercept-url pattern="/customers*" access="ROLE_USER"  /> <!-- match any text in the same directory level -->
+		<security:intercept-url pattern="/customers/**" access="ROLE_USER"  /> <!-- matches the entire directory tree, including sub-directories  -->
+		<!-- --><security:intercept-url pattern="/**" access="ROLE_ANONYMOUS,ROLE_USER"   />  
 	</security:http>
 	
-	<security:authentication-manager>
-		<security:authentication-provider>
-			<security:user-service>
+	
+	
+	<!-- <security:authentication-manager alias="authenticationManager"> -->
+	<security:authentication-manager alias="authenticationManager">
+		<!-- <security:authentication-provider user-service-ref="customUserDetailsService">  -->
+		<security:authentication-provider user-service-ref="customUserDetailsService">
+			
+			<!-- <security:user-service>
 				<security:user name="sherifmwafy@gmail.com" password="123" authorities="ROLE_USER"/>
 				<security:user name="admin@gmail.com" password="123" authorities="ROLE_USER,ROLE_ADMIN"/>
 			</security:user-service>
+			 -->
 		</security:authentication-provider>
 	</security:authentication-manager>
 

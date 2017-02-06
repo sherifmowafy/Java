@@ -3,6 +3,7 @@ package com.sherif.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +32,8 @@ public class CustomerController {
 
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView get(@RequestParam(name="page", defaultValue="1" ) Integer page){
+		//Get Current logged-in user 
+		System.out.println( SecurityContextHolder.getContext().getAuthentication().getName() );
 		ModelAndView mv = new  ModelAndView("customerList");
 		List<Customer> customerList = customerService.getAll(page);
 		List<CustomerDTO> customerDTOList = customerConverter.toCustomerDTOList(customerList);
