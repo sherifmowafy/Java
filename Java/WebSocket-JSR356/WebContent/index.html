@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Chat 1.0 :|</title>
+
+<script type="text/javascript" src="resources/js/jquery-3.1.0.min.js"></script>
+
+<script type="text/javascript">
+	$(function() {
+		alert("ready ");
+		var ws = initWebSockets();
+
+		$("#btnSend").click(function() {
+			var inputMsg = $("#inputMsg");
+			ws.send(inputMsg.val());
+			inputMsg.val("");
+		});
+	});
+
+	function initWebSockets() {
+		if ("WebSocket" in window) {
+			console.log("WebSocket is supported by your Browser!");
+			var ws = new WebSocket("ws://localhost:8080/WebSocket-JSR356/chat");
+
+			ws.onopen = function() {
+				console.log("Opened...");
+				ws.send("I'm Online :) ") ;
+			};
+
+			ws.onmessage = function(evt) {
+				var msg = evt.data;
+				$("#messages").append(msg);
+				$("#messages").append("<br/><br/>");
+			};
+
+			ws.onclose = function() {
+				console.log("Connection is closed...");
+			};
+			
+			ws.onerror = function(e) {
+				console.log(e);
+			};
+
+			return ws;
+		} else {
+			alert("WebSocket NOT supported by your Browser!");
+			return null;
+		}
+	}
+</script>
+
+</head>
+<body>
+	<div id="messages"></div>
+	<div>
+		<input type="text" id="inputMsg" /> <input type="button" id="btnSend"
+			value="Send" />
+	</div>
+</body>
+</html>
