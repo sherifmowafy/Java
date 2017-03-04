@@ -15,20 +15,20 @@ import org.springframework.web.servlet.ModelAndView;
 public class GlobalErrorHandler {
 	
 	@ResponseStatus(value=HttpStatus.INTERNAL_SERVER_ERROR)
-	@ExceptionHandler( value = { NullPointerException.class, IOException.class } )
+	@ExceptionHandler( value = { NullPointerException.class, IOException.class }  )
 	public ModelAndView nullPointerExceptionHandler(Exception e){
 		ModelAndView mv = new ModelAndView("error/nullpointer");
 		mv.addObject("e", e);
 		return mv ;
 	}
 	
-	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
-	@ExceptionHandler(Exception.class)
-	public ErrorInfo errorHandler(HttpServletRequest req, Exception e){
-		ErrorInfo ei = new ErrorInfo(req.getRequestURL().toString(), e);
-		return ei;
-	}
-	
+//	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
+//	@ExceptionHandler(Exception.class)
+//	public ErrorInfo errorHandler(HttpServletRequest req, Exception e){
+//		ErrorInfo ei = new ErrorInfo(req.getRequestURL().toString(), e);
+//		return ei;
+//	}
+//	
 	public class ErrorInfo {
 	    public final String url;
 	    public final String ex;
