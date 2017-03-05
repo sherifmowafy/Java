@@ -16,6 +16,8 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.sherif.interceptor.WeekendInterceptor;
+
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages={"com.sherif.controller"})
@@ -43,9 +45,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
-		interceptor.setParamName("lang");
-		registry.addInterceptor(interceptor);
+		WeekendInterceptor weekendInterceptor = new WeekendInterceptor();
+		LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+		localeChangeInterceptor.setParamName("lang");
+		registry.addInterceptor(localeChangeInterceptor);
+		registry.addInterceptor(weekendInterceptor);
 	}
 	
 	/*
