@@ -49,7 +49,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
 		localeChangeInterceptor.setParamName("lang");
 		registry.addInterceptor(localeChangeInterceptor);
-		registry.addInterceptor(weekendInterceptor);
+		registry.addInterceptor(weekendInterceptor).addPathPatterns("/**");
 	}
 	
 	/*
