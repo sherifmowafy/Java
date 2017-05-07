@@ -1,6 +1,8 @@
 (function(){
 	'use strict';
-	angular.module('erp.services.module').service('customerService', ['$resource', 'appConfig', customerService]);
+	var erpModule = angular.module('erp.services.module');
+	
+	erpModule.service('customerService', ['$resource', 'appConfig', customerService]);
 		
 	function customerService($resource, appConfig){
 		var baseUrl = appConfig.baseUrl;
